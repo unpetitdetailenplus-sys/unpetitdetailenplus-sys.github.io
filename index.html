@@ -1,88 +1,214 @@
 <!DOCTYPE html>
 <html lang="fr">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Un Petit Détail en plus | Cadeaux Personnalisés</title>
-    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;1,700&family=Montserrat:wght@300;400&display=swap" rel="stylesheet">
-    <style>
-        :root {
-            --rose-logo: #e8d1cc; /* O rosa suave da sua logo */
-            --gold: #b8977e;
-            --text-dark: #4a4a4a;
-        }
-        body { font-family: 'Montserrat', sans-serif; margin: 0; color: var(--text-dark); background-color: #fffaf9; line-height: 1.6; }
-        header { background: white; padding: 40px 20px; text-align: center; border-bottom: 1px solid var(--rose-logo); }
-        .logo-text { font-family: 'Playfair Display', serif; font-size: 2.5em; margin: 0; color: var(--text-dark); }
-        .logo-sub { letter-spacing: 3px; font-size: 0.9em; text-transform: uppercase; color: var(--gold); }
-        
-        .hero { padding: 60px 20px; text-align: center; background: linear-gradient(rgba(232,209,204,0.2), rgba(255,255,255,1)); }
-        .hero h2 { font-family: 'Playfair Display', serif; font-size: 2.2em; font-style: italic; }
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-        .container { max-width: 1100px; margin: auto; padding: 20px; }
-        
-        .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 30px; }
-        .card { background: white; padding: 30px; border-radius: 15px; text-align: center; border: 1px solid #eee; transition: 0.3s; }
-        .card:hover { border-color: var(--rose-logo); transform: translateY(-5px); }
-        .card h3 { font-family: 'Playfair Display', serif; color: var(--gold); font-size: 1.5em; }
-        
-        .order-section { margin-top: 80px; background: white; padding: 50px; border-radius: 20px; text-align: center; border: 2px solid var(--rose-logo); }
-        
-        .btn-whatsapp { 
-            display: inline-block; background: #25D366; color: white; padding: 18px 35px; 
-            text-decoration: none; border-radius: 50px; font-weight: bold; font-size: 1.1em;
-            box-shadow: 0 4px 15px rgba(37, 211, 102, 0.3); transition: 0.3s;
-        }
-        .btn-whatsapp:hover { background: #128C7E; transform: scale(1.05); }
+<title>Un Petit Détail en Plus</title>
 
-        .payment-icons { margin-top: 30px; opacity: 0.7; font-size: 0.9em; }
-        footer { padding: 50px; text-align: center; font-size: 0.8em; color: #999; }
-    </style>
+<style>
+:root{
+  --rose:#f7dce1;
+  --ouro:#b8977e;
+  --texto:#5a5a5a;
+}
+
+body{
+  font-family:Arial;
+  margin:0;
+  background:#fdf6f8;
+  color:var(--texto)
+}
+
+header{
+  text-align:center;
+  background:white;
+  padding:15px;
+  border-bottom:2px solid var(--rose)
+}
+
+.menu{
+  display:flex;
+  gap:8px;
+  overflow:auto;
+  padding:10px;
+  background:#fff
+}
+
+.btn{
+  background:var(--rose);
+  border:none;
+  padding:10px;
+  border-radius:8px;
+  white-space:nowrap;
+  color:var(--texto)
+}
+
+.card{
+  background:white;
+  margin:10px;
+  padding:12px;
+  border-radius:12px;
+  border:1px solid var(--rose)
+}
+
+h2,h3{
+  color:var(--ouro)
+}
+
+#cart{
+  position:fixed;
+  bottom:10px;
+  right:10px;
+  background:var(--ouro);
+  color:white;
+  padding:12px;
+  border-radius:10px;
+  border:none
+}
+</style>
+
+<script>
+let lang='fr'
+let cart=[]
+
+const texts={
+fr:{
+ele:"Pour Lui",
+ela:"Pour Elle",
+choco:"Chocolats & Fleurs",
+caneca:"Tasses & Personnalisés",
+bebe:"Maman & Bébé",
+deco:"Décoration Romantique",
+add:"Ajouter",
+finish:"Finaliser sur WhatsApp",
+about:"À propos de nous"
+},
+pt:{
+ele:"Para Ele",
+ela:"Para Ela",
+choco:"Chocolates & Flores",
+caneca:"Canecas & Personalizados",
+bebe:"Mamãe & Bebê",
+deco:"Decoração Romântica",
+add:"Adicionar",
+finish:"Finalizar no WhatsApp",
+about:"Sobre nós"
+}
+}
+
+function t(k){return texts[lang][k]}
+
+function changeLang(l){
+lang=l
+document.querySelectorAll("[data]").forEach(e=>{
+e.innerText=t(e.getAttribute("data"))
+})
+}
+
+function add(name,price){
+cart.push({name,price})
+alert("✔ adicionado ao carrinho")
+}
+
+function finish(){
+let msg="Olá! Quero encomendar:%0A"
+cart.forEach(p=> msg+=`• ${p.name} - ${p.price}€%0A`)
+msg+="%0AData:%0ACidade:%0APersonalização:"
+window.open("https://wa.me/33743529650?text="+msg)
+}
+</script>
 </head>
-<body>
+
+<body onload="changeLang('fr')">
 
 <header>
-    <div class="logo-text">Un Petit Détail</div>
-    <div class="logo-sub">en plus</div>
+<h2 style="color:#b8977e">Un Petit Détail en Plus</h2>
+
+<div>
+<button onclick="changeLang('fr')">FR</button>
+<button onclick="changeLang('pt')">PT</button>
+</div>
 </header>
 
-<section class="hero">
-    <h2>L'art d'offrir avec émotion</h2>
-    <p>Des créations uniques et personnalisées pour sublimer vos moments précieux.</p>
-</section>
-
-<div class="container">
-    <div class="grid">
-        <div class="card">
-            <h3>Coffrets Cadeaux</h3>
-            <p>Homme, Femme ou Bébé. Des paniers garnis avec soin : vins, douceurs, produits de soin et plus encore.</p>
-        </div>
-        <div class="card">
-            <h3>Décorations Romantiques</h3>
-            <p>Ambiance magique pour vos soirées à deux, demandes en mariage ou anniversaires de rencontre.</p>
-        </div>
-        <div class="card">
-            <h3>Occasions Spéciales</h3>
-            <p>Anniversaires, naissances ou juste pour le plaisir de faire sourire quelqu'un.</p>
-        </div>
-    </div>
-
-    <div class="order-section">
-        <h2>Une demande personnalisée ?</h2>
-        <p>Chaque cadeau est unique. Contactez-moi pour créer ensemble la surprise parfaite.</p>
-        <a href="https://wa.me/33743529650" class="btn-whatsapp">Commander via WhatsApp</a>
-        
-        <div class="payment-icons">
-            Modes de paiement acceptés : <br>
-            <strong>PayPal | Wise | Virement Bancaire | Espèces</strong>
-        </div>
-    </div>
+<div class="menu">
+<button class="btn" data="ele"></button>
+<button class="btn" data="ela"></button>
+<button class="btn" data="choco"></button>
+<button class="btn" data="caneca"></button>
+<button class="btn" data="bebe"></button>
+<button class="btn" data="deco"></button>
 </div>
 
-<footer>
-    &copy; 2026 Un Petit Détail en plus - France. <br>
-    Suivez-moi sur Instagram : @unpetitdetailenplus
-</footer>
+<!-- PRODUTOS EXEMPLO -->
+<div class="card">
+<b>Coffret Luxe Homme</b><br>
+40€<br>
+<button onclick="add('Coffret Luxe Homme',40)" data="add"></button>
+</div>
+
+<div class="card">
+<b>Spa Rose Enchanté</b><br>
+75€<br>
+<button onclick="add('Spa Rose Enchanté',75)" data="add"></button>
+</div>
+
+<div class="card">
+<b>Coffret Bienvenue Bébé</b><br>
+42€<br>
+<button onclick="add('Coffret Bienvenue Bébé',42)" data="add"></button>
+</div>
+
+<div class="card">
+<b>Kit Nuit de Rêve</b><br>
+65€<br>
+<button onclick="add('Kit Nuit de Rêve',65)" data="add"></button>
+</div>
+
+<button id="cart" onclick="finish()" data="finish"></button>
+
+<!-- REDES -->
+<section style="text-align:center;padding:25px;background:#fff">
+
+<h3 style="color:#b8977e">Suivez-nous | Siga-nos</h3>
+
+<div style="display:flex;gap:12px;justify-content:center;flex-wrap:wrap">
+
+<a href="https://instagram.com/unpetitdetailenplus"
+   target="_blank"
+   style="background:#E1306C;color:white;padding:12px;border-radius:10px;text-decoration:none">
+Instagram
+</a>
+
+<a href="https://tiktok.com/@unpetitdetailenplus"
+   target="_blank"
+   style="background:#000;color:white;padding:12px;border-radius:10px;text-decoration:none">
+TikTok
+</a>
+
+<a href="https://wa.me/33743529650"
+   target="_blank"
+   style="background:#25D366;color:white;padding:12px;border-radius:10px;text-decoration:none">
+WhatsApp
+</a>
+
+</div>
+</section>
+
+<section style="padding:15px">
+<h3 data="about"></h3>
+
+<p>
+🇫🇷 Boutique de cadeaux personnalisés et décorations romantiques en Île-de-France.  
+Créations faites avec amour pour sublimer vos moments.
+</p>
+
+<p>
+🇧🇷 Loja de presentes personalizados e decorações românticas na Île-de-France.  
+Criações feitas com carinho para tornar seus momentos únicos.
+</p>
+</section>
 
 </body>
 </html>
+  
