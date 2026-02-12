@@ -1,214 +1,199 @@
 <!DOCTYPE html>
-<html lang="fr">
+<html lang="pt">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Un Petit Détail en Plus</title>
+<title>Un Petit Détail en plus</title>
 
 <style>
 :root{
-  --rose:#f7dce1;
-  --ouro:#b8977e;
-  --texto:#5a5a5a;
+  --rose:#e8d1cc;
+  --gold:#b8977e;
+  --dark:#4a4a4a;
 }
 
 body{
   font-family:Arial;
   margin:0;
-  background:#fdf6f8;
-  color:var(--texto)
+  background:#faf7f6;
 }
 
+/* TOPO */
 header{
   text-align:center;
+  padding:20px;
   background:white;
-  padding:15px;
-  border-bottom:2px solid var(--rose)
 }
 
-.menu{
-  display:flex;
-  gap:8px;
-  overflow:auto;
-  padding:10px;
-  background:#fff
+.lang{
+  position:absolute;
+  right:10px;
+  top:10px;
 }
 
-.btn{
-  background:var(--rose);
-  border:none;
+/* PRODUTOS */
+.grid{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:10px;
   padding:10px;
-  border-radius:8px;
-  white-space:nowrap;
-  color:var(--texto)
 }
 
 .card{
   background:white;
-  margin:10px;
-  padding:12px;
-  border-radius:12px;
-  border:1px solid var(--rose)
+  padding:10px;
+  border-radius:10px;
+  text-align:center;
 }
 
-h2,h3{
-  color:var(--ouro)
+button{
+  background:var(--gold);
+  color:white;
+  border:none;
+  padding:8px;
+  border-radius:6px;
 }
 
+/* CARRINHO */
 #cart{
   position:fixed;
-  bottom:10px;
-  right:10px;
-  background:var(--ouro);
-  color:white;
-  padding:12px;
-  border-radius:10px;
-  border:none
+  bottom:0;
+  background:white;
+  width:100%;
+  border-top:2px solid var(--gold);
+  padding:10px;
 }
 </style>
 
-<script>
-let lang='fr'
-let cart=[]
-
-const texts={
-fr:{
-ele:"Pour Lui",
-ela:"Pour Elle",
-choco:"Chocolats & Fleurs",
-caneca:"Tasses & Personnalisés",
-bebe:"Maman & Bébé",
-deco:"Décoration Romantique",
-add:"Ajouter",
-finish:"Finaliser sur WhatsApp",
-about:"À propos de nous"
-},
-pt:{
-ele:"Para Ele",
-ela:"Para Ela",
-choco:"Chocolates & Flores",
-caneca:"Canecas & Personalizados",
-bebe:"Mamãe & Bebê",
-deco:"Decoração Romântica",
-add:"Adicionar",
-finish:"Finalizar no WhatsApp",
-about:"Sobre nós"
-}
-}
-
-function t(k){return texts[lang][k]}
-
-function changeLang(l){
-lang=l
-document.querySelectorAll("[data]").forEach(e=>{
-e.innerText=t(e.getAttribute("data"))
-})
-}
-
-function add(name,price){
-cart.push({name,price})
-alert("✔ adicionado ao carrinho")
-}
-
-function finish(){
-let msg="Olá! Quero encomendar:%0A"
-cart.forEach(p=> msg+=`• ${p.name} - ${p.price}€%0A`)
-msg+="%0AData:%0ACidade:%0APersonalização:"
-window.open("https://wa.me/33743529650?text="+msg)
-}
-</script>
 </head>
 
-<body onload="changeLang('fr')">
+<body>
 
 <header>
-<h2 style="color:#b8977e">Un Petit Détail en Plus</h2>
+<h2>Un Petit Détail en plus</h2>
 
-<div>
-<button onclick="changeLang('fr')">FR</button>
-<button onclick="changeLang('pt')">PT</button>
+<div class="lang">
+<button onclick="setLang('pt')">PT</button>
+<button onclick="setLang('fr')">FR</button>
 </div>
 </header>
 
-<div class="menu">
-<button class="btn" data="ele"></button>
-<button class="btn" data="ela"></button>
-<button class="btn" data="choco"></button>
-<button class="btn" data="caneca"></button>
-<button class="btn" data="bebe"></button>
-<button class="btn" data="deco"></button>
-</div>
+<!-- CATEGORIAS -->
+<h3 id="tit">Cestas & Presentes</h3>
 
-<!-- PRODUTOS EXEMPLO -->
+<div class="grid">
+
 <div class="card">
-<b>Coffret Luxe Homme</b><br>
-40€<br>
-<button onclick="add('Coffret Luxe Homme',40)" data="add"></button>
+<h4>Cesta Romântica</h4>
+<p>45€</p>
+<button onclick="add('Cesta Romântica',45)">Adicionar</button>
 </div>
 
 <div class="card">
-<b>Spa Rose Enchanté</b><br>
-75€<br>
-<button onclick="add('Spa Rose Enchanté',75)" data="add"></button>
+<h4>Mamãe & Bebê</h4>
+<p>55€</p>
+<button onclick="add('Mamãe Bebê',55)">Adicionar</button>
 </div>
 
 <div class="card">
-<b>Coffret Bienvenue Bébé</b><br>
-42€<br>
-<button onclick="add('Coffret Bienvenue Bébé',42)" data="add"></button>
+<h4>Chocolates & Flores</h4>
+<p>40€</p>
+<button onclick="add('Chocolate Flores',40)">Adicionar</button>
 </div>
 
 <div class="card">
-<b>Kit Nuit de Rêve</b><br>
-65€<br>
-<button onclick="add('Kit Nuit de Rêve',65)" data="add"></button>
+<h4>Decoração Romântica</h4>
+<p>70€</p>
+<button onclick="add('Decoração',70)">Adicionar</button>
 </div>
 
-<button id="cart" onclick="finish()" data="finish"></button>
+</div>
 
-<!-- REDES -->
-<section style="text-align:center;padding:25px;background:#fff">
+<!-- CARRINHO -->
+<div id="cart">
 
-<h3 style="color:#b8977e">Suivez-nous | Siga-nos</h3>
+<h4>Carrinho</h4>
 
-<div style="display:flex;gap:12px;justify-content:center;flex-wrap:wrap">
+<div id="items"></div>
 
-<a href="https://instagram.com/unpetitdetailenplus"
-   target="_blank"
-   style="background:#E1306C;color:white;padding:12px;border-radius:10px;text-decoration:none">
-Instagram
-</a>
+<p>Total: <b id="total">0</b>€</p>
 
-<a href="https://tiktok.com/@unpetitdetailenplus"
-   target="_blank"
-   style="background:#000;color:white;padding:12px;border-radius:10px;text-decoration:none">
-TikTok
-</a>
+<select id="mode" onchange="calc()">
+<option value="0">Retirada - Grátis</option>
+<option value="5">Entrega Goussainville - 5€</option>
+<option value="10">Entrega Île de France - 10€</option>
+</select>
 
-<a href="https://wa.me/33743529650"
-   target="_blank"
-   style="background:#25D366;color:white;padding:12px;border-radius:10px;text-decoration:none">
-WhatsApp
-</a>
+<input id="nome" placeholder="Seu nome">
+<input id="end" placeholder="Endereço entrega">
+
+<button onclick="send()">Finalizar no WhatsApp</button>
 
 </div>
-</section>
 
-<section style="padding:15px">
-<h3 data="about"></h3>
+<script>
+let cart=[];
 
-<p>
-🇫🇷 Boutique de cadeaux personnalisés et décorations romantiques en Île-de-France.  
-Créations faites avec amour pour sublimer vos moments.
-</p>
+function add(n,p){
+ cart.push({n,p});
+ show();
+}
 
-<p>
-🇧🇷 Loja de presentes personalizados e decorações românticas na Île-de-France.  
-Criações feitas com carinho para tornar seus momentos únicos.
-</p>
-</section>
+function show(){
+ let h="";
+ let t=0;
+
+ cart.forEach((i,x)=>{
+   h+=i.n+" - "+i.p+"€ <button onclick='del("+x+")'>x</button><br>";
+   t+=i.p;
+ });
+
+ document.getElementById("items").innerHTML=h;
+ document.getElementById("total").innerText=t;
+ calc();
+}
+
+function del(i){
+ cart.splice(i,1);
+ show();
+}
+
+function calc(){
+ let base=cart.reduce((a,b)=>a+b.p,0);
+ let del=Number(mode.value);
+ document.getElementById("total").innerText=base+del;
+}
+
+function send(){
+
+let nome=document.getElementById("nome").value;
+let end=document.getElementById("end").value;
+
+let txt="Pedido Un Petit Détail%0A";
+
+cart.forEach(i=>{
+ txt+=i.n+" - "+i.p+"€%0A";
+});
+
+txt+="Total: "+document.getElementById("total").innerText+"€%0A";
+txt+="Nome: "+nome+"%0A";
+txt+="Endereço: "+end;
+
+window.open("https://wa.me/33743529650?text="+txt);
+}
+
+/* IDIOMA */
+function setLang(l){
+
+if(l=="fr"){
+ tit.innerText="Paniers & Cadeaux";
+}else{
+ tit.innerText="Cestas & Presentes";
+}
+
+}
+</script>
 
 </body>
 </html>
-  
