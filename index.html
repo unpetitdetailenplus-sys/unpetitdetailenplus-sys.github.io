@@ -1,196 +1,174 @@
 <!DOCTYPE html>
 <html lang="fr">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Un Petit Détail en plus</title>
+  <meta charset="UTF-8">
+  <title>Un Petit Détail en Plus</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<style>
-:root{
-  --rose:#c9a19a;
-  --rose2:#e7d3cf;
-  --marron:#6b4b3e;
-  --fond:#faf7f6;
-  --texte:#4a3a34;
-}
+  <style>
+    :root{
+      --rose:#d8a7b1;
+      --rose-fonce:#b07a86;
+      --fond:#f7f3f4;
+      --texte:#3a3a3a;
+    }
 
-*{box-sizing:border-box}
+    *{
+      box-sizing:border-box;
+      margin:0;
+      padding:0;
+      font-family: "Georgia", serif;
+    }
 
-body{
-  margin:0;
-  font-family: "Georgia", serif;
-  background:var(--fond);
-  color:var(--texte);
-}
+    body{
+      background:var(--fond);
+      color:var(--texte);
+    }
 
-/* HEADER */
-header{
-  text-align:center;
-  padding:50px 20px 30px;
-}
+    header{
+      text-align:center;
+      padding:40px 20px 20px;
+    }
 
-header img{
-  max-width:300px;
-}
+    /* LOGO – TAMANHO CORRETO */
+    .logo-main{
+      max-width:420px;
+      width:100%;
+      height:auto;
+      margin:0 auto 15px;
+      display:block;
+    }
 
-.lang{
-  position:absolute;
-  top:20px;
-  right:20px;
-}
+    .lang{
+      margin-top:10px;
+      font-size:14px;
+    }
 
-.lang button{
-  border:none;
-  background:none;
-  color:var(--marron);
-  font-weight:bold;
-  cursor:pointer;
-}
+    .lang button{
+      background:none;
+      border:none;
+      cursor:pointer;
+      font-weight:bold;
+      margin:0 5px;
+    }
 
-/* MENU */
-nav{
-  display:flex;
-  justify-content:center;
-  gap:25px;
-  margin:30px 0;
-  flex-wrap:wrap;
-}
+    nav{
+      display:flex;
+      justify-content:center;
+      gap:20px;
+      padding:15px 10px;
+      flex-wrap:wrap;
+      font-size:15px;
+    }
 
-nav a{
-  text-decoration:none;
-  color:var(--marron);
-  font-weight:bold;
-}
+    nav a{
+      text-decoration:none;
+      color:var(--texte);
+      font-weight:500;
+    }
 
-/* HERO */
-.hero{
-  background:linear-gradient(to bottom, var(--rose2), var(--fond));
-  text-align:center;
-  padding:60px 20px;
-}
+    .hero{
+      background:linear-gradient(to right, #f1e3e7, #f7f3f4);
+      text-align:center;
+      padding:60px 20px;
+      margin-top:20px;
+    }
 
-.hero h1{
-  font-size:2em;
-  margin-bottom:15px;
-}
+    .hero h1{
+      font-size:32px;
+      margin-bottom:15px;
+    }
 
-.hero p{
-  max-width:600px;
-  margin:auto;
-  font-style:italic;
-}
+    .hero p{
+      max-width:600px;
+      margin:0 auto 25px;
+      font-size:16px;
+      line-height:1.6;
+    }
 
-.hero button{
-  margin-top:25px;
-  padding:12px 25px;
-  background:var(--marron);
-  color:white;
-  border:none;
-  border-radius:30px;
-  cursor:pointer;
-}
+    .btn{
+      background:var(--rose-fonce);
+      color:white;
+      padding:12px 25px;
+      border-radius:25px;
+      text-decoration:none;
+      font-size:14px;
+    }
 
-/* CATEGORIES */
-section{
-  padding:60px 20px;
-  max-width:1100px;
-  margin:auto;
-}
+    footer{
+      text-align:center;
+      padding:30px;
+      font-size:13px;
+      opacity:0.7;
+    }
 
-.categories{
-  display:grid;
-  grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
-  gap:20px;
-}
-
-.cat{
-  background:white;
-  border-radius:14px;
-  padding:30px 20px;
-  text-align:center;
-  box-shadow:0 10px 20px rgba(0,0,0,0.05);
-}
-
-.cat a{
-  text-decoration:none;
-  color:var(--marron);
-  font-weight:bold;
-}
-
-/* FOOTER */
-footer{
-  background:#efe4e1;
-  padding:30px;
-  text-align:center;
-}
-
-footer a{
-  margin:0 10px;
-  text-decoration:none;
-  color:var(--marron);
-  font-weight:bold;
-}
-</style>
+    @media(max-width:600px){
+      .hero h1{font-size:26px;}
+      .logo-main{max-width:300px;}
+    }
+  </style>
 </head>
 
 <body>
 
 <header>
-  <div class="lang">
-    <button>FR</button> | <button>PT</button> | <button>EN</button>
-  </div>
+  <!-- LOGO -->
+  <img src="logo.png" alt="Un Petit Détail en Plus" class="logo-main">
 
+  <!-- IDIOMAS -->
+  <div class="lang">
+    <button onclick="setLang('fr')">FR</button> |
+    <button onclick="setLang('pt')">PT</button> |
+    <button onclick="setLang('en')">EN</button>
+  </div>
 </header>
 
 <nav>
-  <a href="index.html">Accueil</a>
-  <a href="cestas.html">Cestas</a>
-  <a href="mama-bebe.html">Mamãe & Bébé</a>
-  <a href="canecas.html">Canecas</a>
-  <a href="chocolates.html">Chocolats</a>
-  <a href="fleurs.html">Fleurs</a>
-  <a href="decoracao.html">Décoration</a>
+  <a href="#">Accueil</a>
+  <a href="#">Cestas</a>
+  <a href="#">Mãe & Bebê</a>
+  <a href="#">Canecas</a>
+  <a href="#">Chocolates</a>
+  <a href="#">Decoração</a>
 </nav>
 
 <section class="hero">
-  <h1>Chaque détail raconte une émotion</h1>
-  <p>
-    Des créations uniques, pensées avec amour, pour transformer chaque moment
-    en souvenir précieux.
+  <h1 id="title">Chaque détail raconte une histoire</h1>
+  <p id="text">
+    Des créations uniques, pensées avec amour pour transformer chaque moment en souvenir précieux.
   </p>
-  <button onclick="location.href='cestas.html'">
-    Découvrir nos créations
-  </button>
-</section>
-
-<section>
-  <div class="categories">
-    <div class="cat"><a href="cestas.html">🎁 Cestas</a></div>
-    <div class="cat"><a href="mama-bebe.html">👶 Mamãe & Bébé</a></div>
-    <div class="cat"><a href="canecas.html">☕ Canecas</a></div>
-    <div class="cat"><a href="chocolates.html">🍫 Chocolats</a></div>
-    <div class="cat"><a href="fleurs.html">🌸 Fleurs</a></div>
-    <div class="cat"><a href="decoracao.html">💖 Décoration romantique</a></div>
-  </div>
+  <a href="#" class="btn" id="btn">Découvrir nos créations</a>
 </section>
 
 <footer>
-  <p>📍 Goussainville</p>
-  <p>
-    <a href="https://instagram.com/unpetitdetailenplus" target="_blank">Instagram</a> |
-    <a href="https://tiktok.com/@unpetitdetailenplus" target="_blank">TikTok</a>
-  </p>
+  © Un Petit Détail en Plus — Cadeaux personnalisés & décorations romantiques
 </footer>
+
+<script>
+  const content = {
+    fr:{
+      title:"Chaque détail raconte une histoire",
+      text:"Des créations uniques, pensées avec amour pour transformer chaque moment en souvenir précieux.",
+      btn:"Découvrir nos créations"
+    },
+    pt:{
+      title:"Cada detalhe conta uma história",
+      text:"Criações únicas, pensadas com amor para transformar cada momento em uma lembrança preciosa.",
+      btn:"Descubra nossas criações"
+    },
+    en:{
+      title:"Every detail tells a story",
+      text:"Unique creations, designed with love to turn every moment into a precious memory.",
+      btn:"Discover our creations"
+    }
+  }
+
+  function setLang(lang){
+    document.getElementById("title").innerText = content[lang].title;
+    document.getElementById("text").innerText = content[lang].text;
+    document.getElementById("btn").innerText = content[lang].btn;
+  }
+</script>
 
 </body>
 </html>
-<header>
-  <img src="logo.png" alt="Un Petit Détail en plus" class="logo-main">
-</header>
-.logo-main {
-  display: block;
-  margin: 20px auto;
-  max-width: 420px;
-  width: 100%;
-  height: auto;
-}
