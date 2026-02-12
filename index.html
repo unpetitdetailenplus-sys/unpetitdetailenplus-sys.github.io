@@ -1,199 +1,226 @@
 <!DOCTYPE html>
-<html lang="pt">
+<html lang="fr">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
 <title>Un Petit Détail en plus</title>
 
 <style>
 :root{
-  --rose:#e8d1cc;
-  --gold:#b8977e;
-  --dark:#4a4a4a;
+  --rose:#d9a7a0;
+  --rose-fonce:#b97c73;
+  --marron:#6b4b3e;
+  --fond:#faf6f4;
+  --texte:#4a3a34;
 }
 
 body{
-  font-family:Arial;
   margin:0;
-  background:#faf7f6;
+  font-family:'Georgia', serif;
+  background:var(--fond);
+  color:var(--texte);
 }
 
-/* TOPO */
 header{
   text-align:center;
-  padding:20px;
-  background:white;
+  padding:40px 20px;
 }
 
-.lang{
-  position:absolute;
-  right:10px;
-  top:10px;
+header img{
+  max-width:280px;
 }
 
-/* PRODUTOS */
-.grid{
+nav{
+  display:flex;
+  justify-content:center;
+  gap:20px;
+  margin:20px 0;
+}
+
+nav button{
+  background:none;
+  border:none;
+  font-weight:bold;
+  cursor:pointer;
+  color:var(--marron);
+}
+
+section{
+  padding:40px 20px;
+  max-width:1100px;
+  margin:auto;
+}
+
+h2{
+  text-align:center;
+  color:var(--marron);
+  margin-bottom:30px;
+}
+
+.produtos{
   display:grid;
-  grid-template-columns:1fr 1fr;
-  gap:10px;
-  padding:10px;
+  grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
+  gap:20px;
 }
 
 .card{
   background:white;
-  padding:10px;
-  border-radius:10px;
+  border-radius:12px;
+  padding:15px;
   text-align:center;
+  box-shadow:0 5px 15px rgba(0,0,0,0.05);
 }
 
-button{
-  background:var(--gold);
+.card img{
+  width:100%;
+  border-radius:10px;
+}
+
+.card button{
+  background:var(--rose-fonce);
   color:white;
   border:none;
-  padding:8px;
-  border-radius:6px;
+  padding:10px;
+  border-radius:8px;
+  cursor:pointer;
+  margin-top:10px;
+  width:100%;
 }
 
-/* CARRINHO */
-#cart{
+#carrinho{
   position:fixed;
-  bottom:0;
+  bottom:20px;
+  right:20px;
+  background:var(--marron);
+  color:white;
+  padding:15px;
+  border-radius:50%;
+  cursor:pointer;
+}
+
+#modal{
+  position:fixed;
+  inset:0;
+  background:rgba(0,0,0,0.5);
+  display:none;
+  justify-content:center;
+  align-items:center;
+}
+
+#modal-content{
   background:white;
-  width:100%;
-  border-top:2px solid var(--gold);
-  padding:10px;
+  padding:20px;
+  border-radius:12px;
+  width:90%;
+  max-width:400px;
+}
+
+footer{
+  background:#f0e6e3;
+  padding:30px;
+  text-align:center;
+  margin-top:40px;
 }
 </style>
-
 </head>
 
 <body>
 
 <header>
-<h2>Un Petit Détail en plus</h2>
+  <img src="logo.png" alt="Un Petit Détail en plus">
+  <p><em>L’art d’offrir avec émotion</em></p>
 
-<div class="lang">
-<button onclick="setLang('pt')">PT</button>
-<button onclick="setLang('fr')">FR</button>
-</div>
+  <nav>
+    <button>FR</button>
+    <button>PT</button>
+    <button>EN</button>
+  </nav>
 </header>
 
-<!-- CATEGORIAS -->
-<h3 id="tit">Cestas & Presentes</h3>
-
-<div class="grid">
+<section>
+<h2>Coffrets Cadeaux</h2>
+<div class="produtos">
 
 <div class="card">
-<h4>Cesta Romântica</h4>
+<img src="https://via.placeholder.com/300x200">
+<h3>Coffret Romantique</h3>
 <p>45€</p>
-<button onclick="add('Cesta Romântica',45)">Adicionar</button>
+<button onclick="add('Coffret Romantique - 45€')">Ajouter au panier</button>
 </div>
 
 <div class="card">
-<h4>Mamãe & Bebê</h4>
+<img src="https://via.placeholder.com/300x200">
+<h3>Maman & Bébé</h3>
 <p>55€</p>
-<button onclick="add('Mamãe Bebê',55)">Adicionar</button>
-</div>
-
-<div class="card">
-<h4>Chocolates & Flores</h4>
-<p>40€</p>
-<button onclick="add('Chocolate Flores',40)">Adicionar</button>
-</div>
-
-<div class="card">
-<h4>Decoração Romântica</h4>
-<p>70€</p>
-<button onclick="add('Decoração',70)">Adicionar</button>
+<button onclick="add('Maman & Bébé - 55€')">Ajouter au panier</button>
 </div>
 
 </div>
+</section>
 
-<!-- CARRINHO -->
-<div id="cart">
+<div id="carrinho" onclick="abrir()">🛒</div>
 
-<h4>Carrinho</h4>
+<div id="modal">
+<div id="modal-content">
+<h3>Votre panier</h3>
+<ul id="lista"></ul>
 
-<div id="items"></div>
-
-<p>Total: <b id="total">0</b>€</p>
-
-<select id="mode" onchange="calc()">
-<option value="0">Retirada - Grátis</option>
-<option value="5">Entrega Goussainville - 5€</option>
-<option value="10">Entrega Île de France - 10€</option>
+<p><strong>Livraison :</strong></p>
+<select id="entrega">
+<option>Retrait gratuit – Goussainville</option>
+<option>Île-de-France – 15€</option>
+<option>Goussainville → Gare de Lyon – Gratuit</option>
 </select>
 
-<input id="nome" placeholder="Seu nome">
-<input id="end" placeholder="Endereço entrega">
+<br><br>
+<button onclick="finalizar()" style="width:100%;padding:10px;background:var(--rose-fonce);color:white;border:none;border-radius:8px;">
+Finaliser sur WhatsApp
+</button>
 
-<button onclick="send()">Finalizar no WhatsApp</button>
-
+<br><br>
+<button onclick="fechar()" style="width:100%;">Fermer</button>
+</div>
 </div>
 
+<footer>
+<p>📍 Goussainville</p>
+<p>
+<a href="https://instagram.com/unpetitdetailenplus" target="_blank">Instagram</a> |
+<a href="https://tiktok.com/@unpetitdetailenplus" target="_blank">TikTok</a>
+</p>
+</footer>
+
 <script>
-let cart=[];
+let carrinho=[];
 
-function add(n,p){
- cart.push({n,p});
- show();
+function add(item){
+  carrinho.push(item);
+  alert("Ajouté au panier 💕");
 }
 
-function show(){
- let h="";
- let t=0;
-
- cart.forEach((i,x)=>{
-   h+=i.n+" - "+i.p+"€ <button onclick='del("+x+")'>x</button><br>";
-   t+=i.p;
- });
-
- document.getElementById("items").innerHTML=h;
- document.getElementById("total").innerText=t;
- calc();
+function abrir(){
+  document.getElementById("modal").style.display="flex";
+  let lista=document.getElementById("lista");
+  lista.innerHTML="";
+  carrinho.forEach(i=>{
+    let li=document.createElement("li");
+    li.textContent=i;
+    lista.appendChild(li);
+  });
 }
 
-function del(i){
- cart.splice(i,1);
- show();
+function fechar(){
+  document.getElementById("modal").style.display="none";
 }
 
-function calc(){
- let base=cart.reduce((a,b)=>a+b.p,0);
- let del=Number(mode.value);
- document.getElementById("total").innerText=base+del;
-}
-
-function send(){
-
-let nome=document.getElementById("nome").value;
-let end=document.getElementById("end").value;
-
-let txt="Pedido Un Petit Détail%0A";
-
-cart.forEach(i=>{
- txt+=i.n+" - "+i.p+"€%0A";
-});
-
-txt+="Total: "+document.getElementById("total").innerText+"€%0A";
-txt+="Nome: "+nome+"%0A";
-txt+="Endereço: "+end;
-
-window.open("https://wa.me/33743529650?text="+txt);
-}
-
-/* IDIOMA */
-function setLang(l){
-
-if(l=="fr"){
- tit.innerText="Paniers & Cadeaux";
-}else{
- tit.innerText="Cestas & Presentes";
-}
-
+function finalizar(){
+  let texto="Bonjour, je souhaite commander:%0A";
+  carrinho.forEach(i=>texto+= "- "+i+"%0A");
+  texto+= "Livraison: "+document.getElementById("entrega").value;
+  window.open("https://wa.me/33743529650?text="+texto,"_blank");
 }
 </script>
 
 </body>
 </html>
+
