@@ -5,154 +5,165 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Un Petit Détail en Plus</title>
 
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600&family=Montserrat:wght@300;400;500&display=swap" rel="stylesheet">
+
 <style>
 
 body{
 margin:0;
-font-family: 'Georgia', serif;
-background:#f8f5f2;
-color:#4b3a35;
+font-family:'Montserrat', sans-serif;
+background:#f4f0ec;
+color:#3e2c23;
 }
 
-/* Barra topo */
-.top-bar{
-background:#5a3e36;
+/* TOP BAR */
+
+.topbar{
+background:#5a2c1e;
 color:white;
 text-align:center;
 padding:8px;
 font-size:14px;
 }
 
-/* Header */
+/* HEADER */
+
 header{
-text-align:center;
-padding:20px 20px 0 20px;
-position:relative;
+background:#f4f0ec;
+padding:20px 40px;
+display:flex;
+align-items:center;
+justify-content:space-between;
 }
 
 .logo{
-width:180px;
-margin-bottom:10px;
+height:110px;
 }
 
-/* Menu principal */
-nav{
+.nav{
 display:flex;
-justify-content:center;
 gap:30px;
-padding:15px;
-font-size:15px;
+font-size:14px;
 }
 
-nav a{
+.nav a{
 text-decoration:none;
-color:#4b3a35;
-font-weight:500;
+color:#3e2c23;
 }
 
-/* Hero */
+/* HERO */
+
 .hero{
-background-image:url('hero.jpg');
-background-size:cover;
-background-position:center;
-padding:140px 20px;
+background:url('banner.jpg') center/cover no-repeat;
+padding:80px 20px;
 text-align:center;
-color:white;
-position:relative;
-}
-
-.hero::before{
-content:"";
-position:absolute;
-top:0;
-left:0;
-right:0;
-bottom:0;
-background:rgba(0,0,0,0.35);
-}
-
-.hero-content{
-position:relative;
-z-index:2;
+background-color:#d6c6b8;
 }
 
 .hero h1{
-font-size:40px;
-margin-bottom:15px;
+font-family:'Playfair Display', serif;
+font-size:60px;
+margin:0;
+}
+
+.hero h2{
+font-family:'Playfair Display', serif;
+font-size:28px;
+margin-top:30px;
 }
 
 .hero p{
-font-size:18px;
-max-width:600px;
+max-width:700px;
 margin:auto;
-margin-bottom:25px;
+font-size:18px;
+margin-top:15px;
 }
 
 .btn{
-background:#7a4f44;
+background:#7a3e2e;
 color:white;
 padding:12px 30px;
+display:inline-block;
+margin-top:25px;
 text-decoration:none;
 border-radius:25px;
-display:inline-block;
+font-weight:500;
 }
 
-/* Menu hambúrguer */
-.menu-btn{
-position:absolute;
-left:20px;
-top:35px;
-font-size:28px;
-cursor:pointer;
-}
+/* SECTION 2 */
 
-.side-menu{
-position:fixed;
-top:0;
-left:-250px;
-width:250px;
-height:100%;
-background:#ffffff;
-box-shadow:2px 0 10px rgba(0,0,0,0.1);
-padding-top:80px;
-transition:0.3s;
-}
-
-.side-menu a{
-display:block;
-padding:15px 30px;
-text-decoration:none;
-color:#4b3a35;
-border-bottom:1px solid #eee;
-}
-
-.side-menu.open{
-left:0;
-}
-
-/* Segunda seção */
 .section{
-padding:60px 20px;
+padding:60px 40px;
 text-align:center;
-max-width:900px;
-margin:auto;
 }
 
-.section h2{
-font-size:28px;
-margin-bottom:20px;
+.products{
+display:grid;
+grid-template-columns:repeat(auto-fit,minmax(200px,1fr));
+gap:30px;
+margin-top:40px;
 }
 
-.section p{
-font-size:17px;
-line-height:1.6;
+.product{
+background:white;
+padding:10px;
+position:relative;
 }
+
+.badge{
+position:absolute;
+top:10px;
+left:10px;
+background:#b33;
+color:white;
+padding:5px 10px;
+font-size:12px;
+}
+
+.product img{
+width:100%;
+}
+
+/* PREMIUM SECTION */
+
+.premium{
+background:#5a2c1e;
+color:white;
+padding:60px 40px;
+display:flex;
+align-items:center;
+gap:40px;
+flex-wrap:wrap;
+}
+
+.premium img{
+width:400px;
+max-width:100%;
+}
+
+.premium-text{
+max-width:400px;
+}
+
+.premium .btn{
+background:white;
+color:#5a2c1e;
+}
+
+/* FOOTER */
 
 footer{
+background:#eee;
+padding:20px;
 text-align:center;
-padding:30px;
 font-size:14px;
-color:#888;
+}
+
+.social a{
+margin:0 10px;
+text-decoration:none;
+color:#3e2c23;
+font-weight:500;
 }
 
 </style>
@@ -160,62 +171,71 @@ color:#888;
 
 <body>
 
-<div class="top-bar">
-Livraison offerte à Goussainville • Livraison gratuite des gares de Goussainville jusqu’à la Gare de Lyon
+<div class="topbar">
+Livraison offerte à Goussainville • Livraison gratuite des gares de Goussainville à la Gare de Lyon
 </div>
 
 <header>
-
-<div class="menu-btn" onclick="toggleMenu()">☰</div>
-
 <img src="logo.png" class="logo">
-
-<nav>
-<a href="#">Accueil</a>
-<a href="#">Coffrets</a>
-<a href="#">Maman & Bébé</a>
-<a href="#">Mugs</a>
-<a href="#">Chocolats</a>
-<a href="#">Décoration</a>
+<nav class="nav">
+<a href="#">NOS SERVICES</a>
+<a href="#">À PROPOS</a>
+<a href="#">FAQ</a>
+<a href="#">AVIS CLIENT</a>
 </nav>
-
 </header>
 
-<div class="side-menu" id="menu">
-<a href="#">Accueil</a>
-<a href="#">Coffrets</a>
-<a href="#">Maman & Bébé</a>
-<a href="#">Mugs</a>
-<a href="#">Chocolats</a>
-<a href="#">Décoration</a>
-</div>
-
 <section class="hero">
-<div class="hero-content">
-<h1>Chaque détail compte.</h1>
+<h1>Bienvenue</h1>
+<h2>Chaque détail compte.</h2>
 <p>Des créations délicates et personnalisées pour transformer chaque moment en une émotion inoubliable.</p>
 <a href="#" class="btn">Découvrir nos créations</a>
-</div>
 </section>
 
 <section class="section">
-<h2>Du petit geste au coffret de luxe</h2>
-<p>
-Nos créations vont d’un simple porte-photo ou d’une tasse accompagnée de chocolats,
-jusqu’à des coffrets raffinés avec fleurs, parfums et compositions élégantes.
-Chaque détail est soigneusement pensé pour offrir une expérience unique.
-</p>
+<p>Des cadeaux qui vont du simple à l’extraordinaire. 
+Du porte-photo aux mugs avec chocolats jusqu’aux coffrets luxueux avec fleurs et expériences bien-être.</p>
+
+<div class="products">
+
+<div class="product">
+<div class="badge">NOUVEAUTÉ</div>
+<img src="prod1.jpg">
+</div>
+
+<div class="product">
+<div class="badge">NOUVEAUTÉ</div>
+<img src="prod2.jpg">
+</div>
+
+<div class="product">
+<div class="badge">NOUVEAUTÉ</div>
+<img src="prod3.jpg">
+</div>
+
+<div class="product">
+<div class="badge">NOUVEAUTÉ</div>
+<img src="prod4.jpg">
+</div>
+
+</div>
+</section>
+
+<section class="premium">
+<img src="premium.jpg">
+<div class="premium-text">
+<h2>Surprenez avec élégance.</h2>
+<p>Coffret premium avec roses, chocolats Ferrero et parfum sophistiqué. Idéal pour un anniversaire ou pour dire “tu es unique”.</p>
+<a href="#" class="btn">ACHETER</a>
+</div>
 </section>
 
 <footer>
-© Un Petit Détail en Plus – Cadeaux personnalisés et décorations romantiques
+<div class="social">
+<a href="https://instagram.com/unpetitdetailenplus" target="_blank">Instagram</a>
+<a href="https://tiktok.com/@unpetitdetailenplus" target="_blank">TikTok</a>
+</div>
 </footer>
-
-<script>
-function toggleMenu(){
-document.getElementById("menu").classList.toggle("open");
-}
-</script>
 
 </body>
 </html>
